@@ -15,6 +15,7 @@ Scaffold-Lisk is a fork of Scaffold-OP with minimal differences, providing addit
 - 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
 - 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
 - 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+- 💼 **BaseFlow Integration**: Complete invoice and inventory management system with AI-powered agents for automated business operations.
 
 <div align="center" style="margin-top: 24px;">
   <img alt="App demo" src="./packages/nextjs/public/scaffold-lisk-landing.png" width="100%">
@@ -70,6 +71,42 @@ Run smart contract test with `yarn hardhat:test`
 - Edit your frontend in `packages/nextjs/pages`
 - Edit your deployment scripts in `packages/hardhat/deploy`
 
+## BaseFlow Features
+
+This project includes BaseFlow, a comprehensive decentralized invoice and inventory management system built on Lisk. 
+
+> **Attribution**: BaseFlow code is adapted from [BaseFlowInventory](https://github.com/Bratipah/BaseFlowInventory) by @Bratipah and integrated into the Scaffold-Lisk framework.
+
+BaseFlow provides:
+
+### 🧠 AI-Powered Agents
+- **Sales Agent**: Automated order processing, payment tracking, and customer communication
+- **Marketing Agent**: Social media monitoring, campaign management, and engagement analytics  
+- **Inventory Agent**: Stock management, demand forecasting, and automated reordering
+
+### 🔗 Smart Contracts
+- **BaseFlowCore**: Core invoice and inventory management logic with OpenZeppelin security
+- **USDC Integration**: Native support for USDC payments and transactions
+- **Owner Management**: Secure ownership controls with two-step ownership transfer
+
+### 📱 Frontend Components
+- **Dashboard**: Real-time business metrics and performance analytics
+- **Agent Interface**: Chat-based interaction with AI agents
+- **Contract Debugging**: Built-in contract interaction through the debug interface
+
+### 🚀 Getting Started with BaseFlow
+
+1. **Access BaseFlow**: Visit `http://localhost:3000/baseflow` after running the development server
+2. **Explore Agents**: Navigate through Sales, Marketing, and Inventory agent interfaces
+3. **Debug Contracts**: Use `http://localhost:3000/debug` to interact with BaseFlow contracts directly
+4. **Create Invoices**: Test invoice creation and payment workflows using the smart contracts
+
+### 🎯 BaseFlow Contract Functions
+- `createInvoice(customer, amount, dueDate, metadata)`: Create new invoices
+- `payInvoice(invoiceId)`: Process invoice payments via USDC
+- `updateInventory(itemId, quantity, price)`: Manage product inventory
+- `getInventory(merchant, itemId)`: Query inventory data
+
 ## Deploy Contracts to Superchain Testnet(s)
 
 To deploy contracts to a remote testnet (e.g. Optimism Sepolia), follow the steps below:
@@ -101,6 +138,26 @@ To deploy contracts to a remote testnet (e.g. Optimism Sepolia), follow the step
    ```
 
    Network names are found in `hardhat.config.js`. Please ensure you have enough Sepolia ETH on all these Superchains. If the deployments are successful, you will see the deployment tx hash on the terminal.
+
+### Deploy BaseFlow to Lisk Sepolia
+
+To deploy the BaseFlow contracts specifically to Lisk Sepolia:
+
+1. **Get Lisk Sepolia ETH** from the [Lisk Sepolia Faucet](https://sepolia-faucet.lisk.com/)
+
+2. **Set your private key** in `.env`:
+   ```bash
+   DEPLOYER_PRIVATE_KEY="0xYOUR_PRIVATE_KEY_HERE"
+   ```
+
+3. **Deploy BaseFlow contracts**:
+   ```bash
+   yarn deploy --network liskSepolia --tags BaseFlow
+   ```
+
+4. **Verify deployment**: Check the console output for contract addresses and owner information.
+
+The BaseFlow contracts will be deployed with your address as the owner, giving you full control over the invoice and inventory management system.
 
 ## Adding Foundry
 
